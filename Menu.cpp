@@ -113,6 +113,7 @@ int main() {
     }
 }
 
+
 void blackWhiteFilter() {
     // B&W function
 }
