@@ -1,10 +1,12 @@
-#include <iostream>
-#include <string>
-#include <map>
-#include <functional>
+#include <bits/stdc++.h>
 #include "bmplib.cpp"
 using namespace std;
+
+unsigned char image[SIZE][SIZE];
+
 void blackWhiteFilter();
+void saveImage();
+void loadImage();
 void invertFilter();
 void mergeFilter();
 void flipImage();
@@ -19,44 +21,98 @@ void blurImage();
 void cropImage();
 void skewImageRight();
 void skewImageUp();
-void saveImageToFile();
-void exit();
+
+
 int main() {
+    //The Menu
     string UserName;
-    cout << "Please enter your name : ";
+    cout << "Please enter your name :" << endl;
     cin >> UserName;
     cout << "Welcome, " << UserName << '!' << endl;
-    while (true) {
-        cout << "Please enter file name of the image to process: " << endl;
-        string ImageName;
-        getline(cin, ImageName);
-        map<string, function<void()>> filters = {
-                {"Black & White Filter", blackWhiteFilter},
-                {"Invert Filter", invertFilter},
-                {"Merge Filter", mergeFilter},
-                {"Flip Image", flipImage},
-                {"Darken and Lighten Image", darkenLightenImage},
-                {"Rotate Image", rotateImage},
-                {"Detect Image Edges", detectImageEdges},
-                {"Enlarge Image", enlargeImage},
-                {"Shrink Image", shrinkImage},
-                {"Mirror 1/2 Image", mirrorHalfImage},
-                {"Shuffle Image", shuffleImage},
-                {"Blur Image", blurImage},
-                {"Crop Image", cropImage},
-                {"Skew Image Right", skewImageRight},
-                {"Skew Image Up", skewImageUp},
-                {"s- Save the image to a file", saveImageToFile}};
-        cout << "please select a filter to apply or 0 to exit: " << endl;
-        for (auto it: filters) cout << "- " << it.first << endl;
-        string SelectedFilter;
-        getline(cin, SelectedFilter);
-        if (filters.count(SelectedFilter)) {
-            filters[SelectedFilter];
-        } else if (SelectedFilter == "0")
-            break;
+    vector <string> filters = {
+            "Black & White Filter",
+            "Invert Filter",
+            "Merge Filter",
+            "Flip Image",
+            "Darken and Lighten Image",
+            "Rotate Image",
+            "Detect Image Edges",
+            "Enlarge Image",
+            "Shrink Image",
+            "Mirror 1/2 Image",
+            "Shuffle Image",
+            "Blur Image",
+            "Crop Image",
+            "Skew Image Right",
+            "Skew Image Up",
+            "s- Save the image to a file",
+            "Load New Image",};
+    for (int i = 0; i < filters.size(); ++i) {
+        cout << i + 1 << " - " << filters[i] << endl;
+    }
+    loadImage();
+    while (true){
+        cout << "Please select a filter to apply or 0 to exit: " << endl;
+        int choice;
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                blackWhiteFilter();
+                break;
+            case 2:
+                invertFilter();
+                break;
+            case 3:
+                mergeFilter();
+                break;
+            case 4:
+                flipImage();
+                break;
+            case 5:
+                darkenLightenImage();
+                break;
+            case 6:
+                rotateImage();
+                break;
+            case 7:
+                detectImageEdges();
+                break;
+            case 8:
+                enlargeImage();
+                break;
+            case 9:
+                shrinkImage();
+                break;
+            case 10:
+                mirrorHalfImage();
+                break;
+            case 11:
+                shuffleImage();
+                break;
+            case 12:
+                blurImage();
+                break;
+            case 13:
+                cropImage();
+                break;
+            case 14:
+                skewImageRight();
+                break;
+            case 15:
+                skewImageUp();
+                break;
+            case 16:
+                saveImage();
+                break;
+            case 17:
+                loadImage();
+                break;
+            case 0:
+                return 0;
+        }
     }
 }
+
 void blackWhiteFilter() {
     // B&W function
 }
